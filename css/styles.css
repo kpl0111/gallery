@@ -10,21 +10,56 @@ body {
     transition: background 0.3s;
 }
 
-img {
+/* 为图片添加容器，以便添加详情条 */
+.image-container {
+    margin: 2%;
     width: 95%;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden; /* 确保阴影和详情条不超出图片边界 */
+    cursor: pointer;
+    /* 可选的：给图片添加阴影 */
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  */
+}
+
+img {
     object-fit: cover;
     /* height: 200px; */
-    margin: 2%;
+    width: 100%;
+    /* margin: 2%; */
     cursor: pointer;
     transition: transform 0.2s;
     position: relative;
+    border-radius: 8px;
 }
 
 img:hover {
     transform: scale(1.1);
 }
 
+/* 添加详情条的样式 */
+.detail-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 25%; /* 控制详情条的高度 */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent); /* 创建渐变阴影效果 */
+    color: white; /* 设置详情条文字颜色 */
+    display: flex;
+    align-items: center; /* 垂直居中文本 */
+    justify-content: center; /* 水平居中文本 */
+    opacity: 0; /* 默认不显示 */
+    transition: opacity 0.3s ease; /* 设置过渡效果 */
+}
+
+/* 当鼠标悬停在.image-container上时，显示详情条 */
+.image-container:hover .detail-bar {
+    opacity: 1;
+}
+
 footer {
+    /* 保持footer的样式不变 */
     width: 100%;
     text-align: center;
     margin: 0 auto;
@@ -33,6 +68,7 @@ footer {
     color: white;
     margin-top: auto;
 }
+
 
 .full-screen-enabled {
     position: fixed;
@@ -55,7 +91,7 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* 半透明的黑色 */
+    background-color: #303039; /* 半透明的黑色 */
     z-index: 998; /* 保证覆盖全屏但低于图片的层级 */
     display: none; /* 默认不显示 */
 }
